@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/Core/">
+    <Project Path="E_Commerce_Domain/E_Commerce_Domain.csproj" />
+  </Folder>
+  <Folder Name="/Infrastructure/">
+    <Project Path="E_commerce_Presistance/E_commerce_Presistance.csproj" />
+  </Folder>
+  <Project Path="E_Commerce/E_Commerce.csproj" />
+</Solution>
