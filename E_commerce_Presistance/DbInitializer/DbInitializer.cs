@@ -9,9 +9,9 @@ using E_Commerce_Domain.Contracts;
 using E_commerce_Presistance.Context;
 using System.Text.Json;
 
-namespace E_commerce_Presistance.DbInitializer
+namespace E_commerce_Presistance.Dbinitializer
 {
-    internal class DbInitializer(ApplicationContext appdbContext): IDbInitializer
+    public class DbInitializer(ApplicationContext appdbContext): IDbInitializer
     {
         public async Task InitializeAsync()
         {
@@ -22,16 +22,73 @@ namespace E_commerce_Presistance.DbInitializer
 
                 if (!(appdbContext.Brands.Any()))
                 {
-                    var BrandData = await File.ReadAllTextAsync("E_commerce_Presistance\\DataSeed\\brands.json");
+                    var path = Path.Combine(
+                              Directory.GetParent(Directory.GetCurrentDirectory())!.FullName,
+                              "E_commerce_Presistance",
+                              "DataSeed",
+                              "brands.json"
+                          );
+
+                    var BrandData = await File.ReadAllTextAsync(path);
                     var Brands = JsonSerializer.Deserialize<List<ProductBrand>>(BrandData);
 
                     if (Brands != null && Brands.Any())
                     {
                         appdbContext.Brands.AddRange(Brands);
+                        await appdbContext.SaveChangesAsync();
                     }
-                    await appdbContext.SaveChangesAsync();
+
 
                 }
+
+
+
+                if (!(appdbContext.ProductTypes.Any()))
+                {
+                    var path = Path.Combine(
+                              Directory.GetParent(Directory.GetCurrentDirectory())!.FullName,
+                              "E_commerce_Presistance",
+                              "DataSeed",
+                              "types.json"
+                          );
+
+                    var ProuductsTypesdata = await File.ReadAllTextAsync(path);
+                    var types = JsonSerializer.Deserialize<List<ProductType>>(ProuductsTypesdata);
+
+                    if (types != null && types.Any())
+                    {
+
+
+                        appdbContext.ProductTypes.AddRange(types);
+                        await appdbContext.SaveChangesAsync();
+
+                    }
+
+
+                }
+
+                if (!(appdbContext.Products.Any()))
+                {
+                    var path = Path.Combine(
+                              Directory.GetParent(Directory.GetCurrentDirectory())!.FullName,
+                              "E_commerce_Presistance",
+                              "DataSeed",
+                              "products.json"
+                          );
+
+                    var ProuductData = await File.ReadAllTextAsync(path);
+                    var products = JsonSerializer.Deserialize<List<Product>>(ProuductData);
+
+                    if (products != null && products.Any())
+                    {
+                        appdbContext.Products.AddRange(products);
+                        await appdbContext.SaveChangesAsync();
+
+                    }
+
+
+                }
+
             }
             catch (Exception )
             {

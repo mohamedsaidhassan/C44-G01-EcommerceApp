@@ -1,11 +1,11 @@
 ﻿using E_commerce_Presistance.Context;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using E_commerce_Presistance.Dbinitializer;
+using E_Commerce_Domain.Contracts;
+using Microsoft.EntityFrameworkCore;
+
 namespace E_commerce_Presistance.DependancyInjection
 {
     public static class PresistanceServiceExtensions
@@ -13,12 +13,16 @@ namespace E_commerce_Presistance.DependancyInjection
          public static IServiceCollection AddPresistanceService(this IServiceCollection services,
              IConfiguration configuration)
         {
-           return services.AddDbContext<ApplicationContext>(option =>
+           services.AddDbContext<ApplicationContext>(option =>
             {
                 var connection = configuration.GetConnectionString("DefaultConnection");
-
                 option.UseSqlServer(connection);
             });
+
+           // Register db initializer
+           services.AddScoped<IDbInitializer,DbInitializer>();
+
+           return services;
         }
     }
 }

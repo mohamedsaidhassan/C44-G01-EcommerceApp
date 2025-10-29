@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Spec\**" />
+    <EmbeddedResource Remove="Spec\**" />
+    <None Remove="Spec\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="14.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\E_Commerce_Domain\E_Commerce_Domain.csproj" />
+    <ProjectReference Include="..\E_commerce_Presistance\E_commerce_Presistance.csproj" />
+    <ProjectReference Include="..\E_Commerce_service_Abstraction\E_Commerce_service_Abstraction.csproj" />
+  </ItemGroup>
+
+</Project>

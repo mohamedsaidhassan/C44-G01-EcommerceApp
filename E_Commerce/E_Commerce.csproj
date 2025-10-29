@@ -15,7 +15,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\E_Commerce_Domain\E_Commerce_Domain.csproj" />
+    <ProjectReference Include="..\E_Commerce_Presentation.API\E_Commerce_Presentation.API.csproj" />
     <ProjectReference Include="..\E_commerce_Presistance\E_commerce_Presistance.csproj" />
+    <ProjectReference Include="..\E_Commerce_Service\E_Commerce_Service.csproj" />
+    <ProjectReference Include="..\E_Commerce_service_Abstraction\E_Commerce_service_Abstraction.csproj" />
   </ItemGroup>
 
 </Project>

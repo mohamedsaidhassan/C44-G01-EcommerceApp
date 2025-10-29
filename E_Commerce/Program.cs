@@ -1,7 +1,11 @@
 using E_commerce_Presistance.DependancyInjection;
 using E_Commerce_Domain.Contracts;
+using System.Threading.Tasks;
+using E_Commerce_Service.Dependancyinjection;
 using Microsoft.EntityFrameworkCore.Internal;
 using System.Threading.Tasks;
+using E_Commerce_Presentation.API.Controllers;
+using E_commerce_Presistance.Dbinitializer;
 namespace E_Commerce
 {
     public class Program
@@ -11,9 +15,13 @@ namespace E_Commerce
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+         
+
+            builder.Services.AddControllers().AddApplicationPart(typeof(ProductController).Assembly);
+
+            builder.Services.ApplicationServices();
             builder.Services.AddPresistanceService(builder.Configuration);
 
-            builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -22,7 +30,8 @@ namespace E_Commerce
 
             var scope = app.Services.CreateScope();
 
-            var intializer = app.Services.GetRequiredService<IDbInitializer>();
+            // var intializer = app.Services.GetRequiredService<IDbInitializer>();
+            var intializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
             await intializer.InitializeAsync();
 
             // Configure the HTTP request pipeline.
