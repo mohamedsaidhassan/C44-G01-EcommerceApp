@@ -19,6 +19,7 @@ namespace E_Commerce_Service.Dependancyinjection
         {
             //services.AddScoped<IDbInitializer, DbInitializer>();
             services.AddScoped<IUintofwork,Uintofwork>();
+            services.AddScoped<IBasketService,BasketService>();
             services.AddScoped<IProductService, ProductService>();
             
             services.AddAutoMapper(Assembly.GetExecutingAssembly());

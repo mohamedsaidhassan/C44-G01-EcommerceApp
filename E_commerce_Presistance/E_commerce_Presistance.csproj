@@ -16,10 +16,12 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="StackExchange.Redis" Version="2.9.32" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\E_Commerce_Domain\E_Commerce_Domain.csproj" />
+    <ProjectReference Include="..\E_Commerce_service_Abstraction\E_Commerce_service_Abstraction.csproj" />
   </ItemGroup>
 
 </Project>

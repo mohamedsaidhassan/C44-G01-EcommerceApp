@@ -22,4 +22,12 @@
     <ProjectReference Include="..\E_Commerce_service_Abstraction\E_Commerce_service_Abstraction.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\hp\source\repos\E_Commerce\E_Commerce\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\hp\source\repos\E_Commerce\E_Commerce\.editorconfig" />
+  </ItemGroup>
+
 </Project>
